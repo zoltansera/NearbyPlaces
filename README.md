@@ -1,0 +1,2 @@
+# NearbyPlaces
+Learning Leaflet library
