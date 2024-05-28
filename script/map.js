@@ -12,7 +12,8 @@ class GeoLoc {
         this.acc = 0;
 
         this.state = undefined;
-        this.map = L.map("map").setView([this.lat, this.long], 19);
+        this.zoom = 19;
+        this.map = L.map("map").setView([this.lat, this.long], this.zoom);
         this.myPosMarker = L.circle([this.lat, this.long], {
             color: "red",
             fillColor: "#f03",
@@ -59,8 +60,8 @@ class GeoLoc {
     }
 
     showPosition = () => {
-//        var map = L.map("map").setView([this.lat, this.long], 19);
-        this.map.setView([this.lat, this.long], 19);
+        this.zoom = this.map.getZoom();
+        this.map.setView([this.lat, this.long], this.zoom);
         L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 21,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
