@@ -13,6 +13,12 @@ class GeoLoc {
 
         this.state = undefined;
         this.map = L.map("map").setView([this.lat, this.long], 19);
+        this.myPosMarker = L.circle([this.lat, this.long], {
+            color: "red",
+            fillColor: "#f03",
+            fillOpacity: 0.2,
+            radius: 2,
+        }).addTo(this.map);
         this.askForGeolocationPermission();
     }
 
@@ -60,12 +66,7 @@ class GeoLoc {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         }).addTo(this.map);
     
-        var circle = L.circle([this.lat, this.long], {
-            color: "red",
-            fillColor: "#f03",
-            fillOpacity: 0.2,
-            radius: 2,
-        }).addTo(this.map);
+        this.myPosMarker.setLatLng([this.lat, this.long]);
     }
 }
 
