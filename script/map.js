@@ -1,17 +1,16 @@
 class GeoLoc {
-
     constructor() {
         this.options = {
             enableHighAccuracy: true,
             timeout: 5000,
-            maximumAge: 0
+            maximumAge: 0,
         };
 
         this.lat = 47.488524;
         this.long = 19.0421782;
         this.acc = 0;
 
-        this.state = undefined;
+        this.mode = "free"; // free / tracking
         this.zoom = 19;
         this.map = L.map("map").setView([this.lat, this.long], this.zoom);
         this.myPosMarker = L.circle([this.lat, this.long], {
@@ -33,16 +32,41 @@ class GeoLoc {
             } else {
                 // Don't do anything if the permission was denied.
             }
-            this.state = result.state;
         });
 
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(this.success, this.error, this.options);
-            this.state = "watching";
+            this.startTracking();
         } else {
             alert("Not supported");
         }
-    }
+    };
+
+    switchTracking = () => {
+        switch (this.mode) {
+            case "free":
+                this.mode = "tracking";
+                this.startTracking();
+                console.log("tracking enabled");
+                break;
+            case "tracking":
+                this.mode = "free";
+                this.stopTracking();
+                console.log("tracking disabled");
+                break;
+        }
+    };
+
+    startTracking = () => {
+        if (this.mode == "tracking") {
+            this.tracker = setTimeout(() => {
+                navigator.geolocation.getCurrentPosition(this.success, this.error, this.options);
+            }, 3000);
+        } else {
+            navigator.geolocation.getCurrentPosition(this.success, this.error, this.options);
+        }
+    };
+
+    stopTracking = () => {};
 
     success = (pos) => {
         this.lat = pos.coords.latitude;
@@ -53,11 +77,11 @@ class GeoLoc {
         console.log(`Longitude: ${this.long}`);
         console.log(`More or less ${this.acc} meters.`);
         this.showPosition(this.lat, this.long, this.acc);
-    }
+    };
 
     error = (err) => {
         console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
+    };
 
     showPosition = () => {
         this.zoom = this.map.getZoom();
@@ -66,10 +90,8 @@ class GeoLoc {
             maxZoom: 21,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         }).addTo(this.map);
-    
         this.myPosMarker.setLatLng([this.lat, this.long]);
-    }
+    };
 }
-
 
 const myLoc = new GeoLoc();

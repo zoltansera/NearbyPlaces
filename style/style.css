@@ -6,7 +6,7 @@ body {
 #map {
     padding: 0;
     margin: 0;
-    position: absolute;
+    position: relative;
     height: 90vh;
     width: 100%;
 }
