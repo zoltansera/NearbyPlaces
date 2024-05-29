@@ -57,16 +57,17 @@ class GeoLoc {
     };
 
     startTracking = () => {
+        navigator.geolocation.getCurrentPosition(this.success, this.error, this.options);
         if (this.mode == "tracking") {
             this.tracker = setTimeout(() => {
-                navigator.geolocation.getCurrentPosition(this.success, this.error, this.options);
+                this.startTracking();       
             }, 3000);
-        } else {
-            navigator.geolocation.getCurrentPosition(this.success, this.error, this.options);
         }
     };
 
-    stopTracking = () => {};
+    stopTracking = () => {
+        clearTimeout(this.tracker);
+    };
 
     success = (pos) => {
         this.lat = pos.coords.latitude;

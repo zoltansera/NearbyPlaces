@@ -10,7 +10,10 @@
     </head>
     <body>
         <div id="map"></div>
-        <button onclick="myLoc.switchTracking()">Tracking</button>
+        <label class="switch">
+            <input type="checkbox" onchange="myLoc.switchTracking()">
+            <span class="slider round"></span>
+          </label>
         <script src="script/map.js"></script>
     </body>
 </html>
