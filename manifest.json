@@ -9,5 +9,21 @@
             "purpose": "any"
         }
     ],
-    "display": "standalone"
+    "display": "standalone",
+    "screenshots": [
+        {
+            "src": "img/icons/scrnshot.webp",
+            "sizes": "640x320",
+            "type": "image/webp",
+            "form_factor": "wide",
+            "label": "NearbyPlaces"
+        },
+        {
+            "src": "img/icons/scrnshotmobile.webp",
+            "sizes": "320x640",
+            "type": "image/webp",
+            "form_factor": "narrow",
+            "label": "NearbyPlaces"
+        }
+    ]
 }
