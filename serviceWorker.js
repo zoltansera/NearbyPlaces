@@ -1,11 +1,10 @@
 const staticSite = "nearbyplaces-site-v1";
 const assets = [
-    "/",
-    "/index.html",
-    "/style/style.css",
-    "/script/map.js",
-    "/serviceWorker.js",
-    "/manifest.json"
+    "index.html",
+    "style/style.css",
+    "script/map.js",
+    "serviceWorker.js",
+    "manifest.json"
 ];
 
 self.addEventListener("install", (installEvent) => {
@@ -27,7 +26,7 @@ self.addEventListener("fetch", (fetchEvent) => {
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
         navigator.serviceWorker
-            .register("/serviceWorker.js")
+            .register("serviceWorker.js")
             .then((res) => console.log("service worker registered"))
             .catch((err) => console.log("service worker not registered", err));
     });

@@ -1,6 +1,6 @@
 {
     "name": "NearbyPlaces",
-    "start_url": "/index.html",
+    "start_url": "index.html",
     "icons": [
         {
             "src": "img/icons/144.webp",
