@@ -3,7 +3,9 @@ const assets = [
     "/",
     "/index.html",
     "/style/style.css",
-    "/script/map.js"
+    "/script/map.js",
+    "/serviceWorker.js",
+    "/manifest.json"
 ];
 
 self.addEventListener("install", (installEvent) => {
